@@ -59,12 +59,25 @@ export default function Menu({ destinations, map }) {
   }
 
   function flyToDestination(destination) {
-    if (map) {
-      map.flyTo({
-        center: [destination.lng, destination.lat],
-        zoom: 9,
-      });
+    console.log("flyToDestination invoked");
+    const allMarkers = document.getElementsByClassName("min-destinasjon");
+    console.log("ALL MARKERS ====> ", allMarkers);
+    for (const singleMarker of allMarkers) {
+      if (singleMarker.getAttribute("data-name") === destination.title) {
+        console.log("Islamabd Found");
+        const desiredMarker = singleMarker;
+        console.log("desiredMarker===>", desiredMarker);
+        desiredMarker.click();
+      }
     }
+
+    // if (map) {
+    //   console.log("Map Exists");
+    //   map.flyTo({
+    //     center: [destination.lng, destination.lat],
+    //     zoom: 9,
+    //   });
+    // }
     handleMenu();
   }
 
@@ -73,7 +86,7 @@ export default function Menu({ destinations, map }) {
       <nav>
         <h2
           onClick={handleMenu}
-          tabIndex={2}
+          tabIndex="2"
           onKeyDown={(event) => {
             if (event.key === "Enter") handleMenu();
           }}
@@ -83,13 +96,18 @@ export default function Menu({ destinations, map }) {
         {showMenuItems && (
           <ul>
             {destinations.map((dest, index) => (
-              <li key={index} onClick={() => flyToDestination(dest)}>
-                <a
-                  className="menu-element"
-                  key={index}
-                  href="#"
-                  tabIndex={3 + index}
-                >
+              <li
+                key={index}
+                onClick={() => flyToDestination(dest)}
+                tabIndex="2"
+                onKeyDown={(event) => {
+                  console.log("dest===>", dest);
+                  if (event.key === "Enter") {
+                    flyToDestination(dest);
+                  }
+                }}
+              >
+                <a className="menu-element" key={index} href="#">
                   {dest.title}
                 </a>
               </li>

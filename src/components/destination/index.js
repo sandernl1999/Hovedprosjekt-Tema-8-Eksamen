@@ -213,24 +213,33 @@ export default function Destination({
   }
 
   return (
-    <div class="modal" id="destination-popup">
+    <div
+      class="modal"
+      id="destination-popup"
+      role="dialog"
+      tabIndex="0"
+      aria-labelledby="destination-popup-label"
+      aria-describedby="saved-information-description"
+    >
       <div class="modal-dialog animate-modal">
         <div class="modal-content dest-modal">
           <div class="modal-header">
             <h5 class="modal-title" id="destination-popup-label">
               {selectedDest}
             </h5>
-            <label
+            <button
               class="close-popup-icon"
+              id="ahmed-close-button"
+              tabIndex="0"
+              aria-label="close dialog"
               onClick={() => {
                 startAnimation();
                 setTimeout(() => setShowPopup(false), 500);
               }}
-              tabIndex={1}
             >
               {" "}
               x{" "}
-            </label>
+            </button>
           </div>
           {editDestination && (
             <div>
@@ -240,7 +249,6 @@ export default function Destination({
                     class="form-control"
                     type="file"
                     id="dest-image"
-                    tabIndex={1}
                     onChange={handleDestFileUpload}
                     placeholder="Destination Image"
                   />
@@ -251,7 +259,6 @@ export default function Destination({
                     class="form-control"
                     id="dest-desc"
                     value={destDesc}
-                    tabIndex={2}
                     onChange={(event) => setDestDesc(event.target.value)}
                     rows="3"
                     placeholder="Destination Desc"
@@ -263,12 +270,7 @@ export default function Destination({
                 <div style={{ justifyContent: "center", display: "flex" }}>
                   <label>Rate</label>
                   <br />
-                  <Rater
-                    total={5}
-                    tabIndex={3}
-                    rating={destRating}
-                    onRate={setRate}
-                  />
+                  <Rater total={5} rating={destRating} onRate={setRate} />
                 </div>
               </div>
               {message.length > 0 && (
@@ -290,7 +292,6 @@ export default function Destination({
                 <button
                   type="button"
                   class="btn btn-secondary"
-                  tabIndex={4}
                   onClick={() => {
                     startAnimation();
                     setTimeout(() => setShowPopup(false), 500);
@@ -303,7 +304,6 @@ export default function Destination({
                   disabled={disableSave}
                   class="btn btn-primary"
                   onClick={saveDestination}
-                  tabIndex={5}
                 >
                   Save
                 </button>
@@ -336,7 +336,10 @@ export default function Destination({
                   )}
                 </div>
                 <div style={{ justifyContent: "center", display: "flex" }}>
-                  <label style={{ fontSize: 16, paddingTop: 4 }}>
+                  <label
+                    style={{ fontSize: 16, paddingTop: 4 }}
+                    id="saved-information-description"
+                  >
                     {destDesc}
                   </label>
                 </div>
@@ -347,6 +350,10 @@ export default function Destination({
                     rating={destRating}
                     onRate={setRate}
                     interactive={false}
+                    tabIndex="0"
+                    aria-label={
+                      "rating of this destination is " + destRating + " stars"
+                    }
                   />
                 </div>
                 <div style={{ justifyContent: "center", display: "flex" }}>
@@ -360,12 +367,13 @@ export default function Destination({
                         marginRight: 10,
                         display: "inline",
                       }}
-                      tabIndex={1}
                       alt="delete destination"
                       onClick={deleteDestination}
                       onKeyDown={(event) => {
                         if (event.key === "Enter") deleteDestination();
                       }}
+                      role="button"
+                      tabIndex="0"
                     ></img>
                     <img
                       src={shareStopImg}
@@ -375,11 +383,12 @@ export default function Destination({
                         height: 30,
                         display: "inline",
                       }}
-                      tabIndex={2}
                       onKeyDown={(event) => {
                         if (event.key === "Enter") setEnableShareDest(true);
                       }}
                       alt="share destination"
+                      role="button"
+                      tabIndex="0"
                       onClick={() => setEnableShareDest(true)}
                     ></img>
                     {enableShareDest && (
@@ -389,7 +398,6 @@ export default function Destination({
                         value={sharewith}
                         style={{ display: "inline", width: "65%" }}
                         placeholder="Enter email of the user"
-                        tabIndex={3}
                         onChange={(event) => setSharewith(event.target.value)}
                       />
                     )}
@@ -399,7 +407,6 @@ export default function Destination({
                         disabled={disableShare}
                         onClick={shareDestination}
                         style={{ display: "inline" }}
-                        tabIndex={4}
                       >
                         Share
                       </button>
@@ -431,6 +438,9 @@ export default function Destination({
                       setEditDestination(true);
                     }}
                     class="btn btn-primary"
+                    onKeyDown={(event) => {
+                      document.getElementById("destination-popup").focus();
+                    }}
                   >
                     Edit Destination
                   </button>

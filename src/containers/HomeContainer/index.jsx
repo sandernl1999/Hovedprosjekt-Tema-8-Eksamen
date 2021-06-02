@@ -38,8 +38,8 @@ function HomeContainer() {
   useEffect(() => {
     const userString = localStorage.getItem("user");
     if (!userString) {
-      history.push("/");      
-    }    
+      history.push("/");
+    }
     getDestinations();
   }, []);
 
@@ -66,6 +66,8 @@ function HomeContainer() {
         "pk.eyJ1Ijoic2FuZGVybmwiLCJhIjoiY2trZWdsZXh6MDgxODJ1bjd2eHhrZHBpNiJ9.CfglP1yR5fWs8mOyh8k46w",
       mapboxgl: Mapbox,
     });
+    console.log("geocoder===>", geocoder);
+
     map.addControl(new Mapbox.NavigationControl(), "bottom-right");
     map.addControl(geocoder);
     geocoder.on("result", (e) => {
@@ -86,6 +88,10 @@ function HomeContainer() {
         let el = document.createElement("div");
         el.className = "min-destinasjon";
         el.setAttribute("data-name", `${item.title}`);
+        el.setAttribute("aria-label", `${item.title}`);
+        el.setAttribute("role", `button`);
+        el.setAttribute("aria-haspopup", `${true}`);
+        el.setAttribute("tabindex", `3`);
         el.style.display = "block";
         el.style.height = "50px";
         el.style.width = "50px";
@@ -93,7 +99,6 @@ function HomeContainer() {
         el.style.borderRadius = "50%";
         el.style.backgroundImage = `url('${item.downloadURL}')`;
         el.style.backgroundSize = "50px 50px";
-        el.setAttribute("tabindex", destinations.length+3+index);
 
         el.addEventListener("keydown", function (event) {
           if (event.key !== "Enter") return;
@@ -107,6 +112,8 @@ function HomeContainer() {
             zoom: 9,
           });
           setShowPopup(true);
+          // setTimeout(() => setShowPopup(true), 2000);
+
           setEditDestination(false);
           setCurrentDestination(selectedDestArray[0]);
           setSelectedDest(selectedDestArray[0].title);
@@ -123,7 +130,9 @@ function HomeContainer() {
             center: [item.lng, item.lat],
             zoom: 9,
           });
-          setShowPopup(true);
+          // setShowPopup(true);
+          setTimeout(() => setShowPopup(true), 4000);
+
           setEditDestination(false);
         });
 
@@ -199,12 +208,13 @@ function HomeContainer() {
             deleteDestination={deleteDestination}
           />
         )}
-        <Menu destinations={destinations} map={map} />
         <Information />
+        <Menu destinations={destinations} map={map} />
         <WelcomeBanner />
         <Logout />
         <PageTitle></PageTitle>
         <HomeContent dangerouslySetInnerHTML={{ __html: "" }} />
+
         <div
           className="mapContainer"
           style={{ height: "100vh", width: "100vw" }}

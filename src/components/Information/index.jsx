@@ -19,33 +19,50 @@ function Information() {
 
   function handleKeydown(event) {
     if (event.key === "Enter") {
-      setShowModal(!showModal);
+      openModal();
+    } else if (event.key === "Tab") {
+      document.getElementById("myModal").focus();
     }
   }
 
   return (
     <div style={{ position: "absolute" }}>
       <label style={{ marginBottom: "12px" }}>
-        <button id="myBtn" tabIndex={1} onClick={openModal}>
+        <button
+          id="myBtn"
+          onClick={openModal}
+          aria-haspopup="true"
+          tabIndex="1"
+        >
           ?
         </button>
       </label>
       {showModal && (
-        <div id="myModal" class="modal">
+        <div
+          id="myModal"
+          class="modal"
+          role="dialog"
+          tabIndex="1"
+          aria-labelledby="dialog1_label"
+          aria-describedby="dialog1_label2"
+        >
           <div class="modal-content info-modal">
-            <span
-              tabIndex="1"
+            <button
               class="close"
+              tabIndex="1"
               onClick={openModal}
               onKeyDown={handleKeydown}
+              aria-label="close dialog"
             >
               &times;
-            </span>
-            <p style={{ marginTop: 30 }}>
+            </button>
+            <p style={{ marginTop: 30 }} id="dialog1_label">
               On this map you find the 7 new wonders of the world + our school!
             </p>
             <p></p>
-            <p>Click, scroll and navigate through the map!</p>
+            <p id="dialog1_label2">
+              Click, scroll and navigate through the map!
+            </p>
           </div>
         </div>
       )}
