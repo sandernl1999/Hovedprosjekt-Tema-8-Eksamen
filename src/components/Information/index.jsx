@@ -48,7 +48,14 @@ function Information() {
         >
           <div class="modal-content info-modal">
             <button
-              class="close"
+              style={{
+                width: "25px",
+                height: "25px",
+                marginLeft: "auto",
+                marginRight: "10px",
+                marginTop: "10px",
+              }}
+              class="close-popup-icon"
               tabIndex="1"
               onClick={openModal}
               onKeyDown={handleKeydown}
