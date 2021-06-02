@@ -90,6 +90,9 @@ export default function Menu({ destinations, map }) {
           onKeyDown={(event) => {
             if (event.key === "Enter") handleMenu();
           }}
+          role="button"
+          aria-haspopup="true"
+          aria-label="Menu"
         >
           🌎📌
         </h2>

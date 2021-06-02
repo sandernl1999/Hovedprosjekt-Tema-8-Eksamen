@@ -270,7 +270,15 @@ export default function Destination({
                 <div style={{ justifyContent: "center", display: "flex" }}>
                   <label>Rate</label>
                   <br />
-                  <Rater total={5} rating={destRating} onRate={setRate} />
+                  <Rater
+                    total={5}
+                    rating={destRating}
+                    onRate={setRate}
+                    tabIndex="0"
+                    aria-label={
+                      "rating of this destination is " + destRating + " stars"
+                    }
+                  />
                 </div>
               </div>
               {message.length > 0 && (
@@ -439,7 +447,12 @@ export default function Destination({
                     }}
                     class="btn btn-primary"
                     onKeyDown={(event) => {
-                      document.getElementById("destination-popup").focus();
+                      if (event.key === "Tab") {
+                        document.getElementById("destination-popup").focus();
+                      } else if (event.key === "Enter") {
+                        setIsDestination(true);
+                        setEditDestination(true);
+                      }
                     }}
                   >
                     Edit Destination
@@ -456,6 +469,13 @@ export default function Destination({
                     disabled={disableSave}
                     class="btn btn-primary"
                     onClick={addDestination}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        addDestination();
+                      } else {
+                        document.getElementById("destination-popup").focus();
+                      }
+                    }}
                   >
                     {" "}
                     Save{" "}
