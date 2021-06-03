@@ -6,8 +6,8 @@ import deleteStopImg from "../../../assets/images/delete_img.png";
 import Message from "../StatusMessage/Message";
 
 /**
- * This component renders a Destination Add, remove, update & share functionality.
- * user-destinations are stored in a collection where a users data is stored against email id of the logged in user
+* Denne komponenten rendrer muligheten til å legge til, fjerne, oppdatere og dele en destinasjon.
+* User-destinations er lagret i en kolleksjon hvor brukerdata er lagret mot den innloggede brukers email ID 
  */
 
 export default function Destination({
@@ -54,10 +54,10 @@ export default function Destination({
         createdDateTime: new Date(),
       })
       .then((resp) => {
-        setMessage("Shared successfully.");
-        setMessageType("success");
+        setMessage("Deling er fullført");
+        setMessageType("Suksess");
       })
-      .catch((err) => console.log(err))
+      
       .finally((e) => setDisableShare(false));
   }
 
@@ -87,15 +87,15 @@ export default function Destination({
   }
 
   function saveDestination() {
-    console.log("Running SaveDestination");
-    console.log("saveDestination destImage===>", destImage);
+    
+    
 
     const userString = localStorage.getItem("user");
     if (!userString) {
       return;
     }
     if (!destImage) {
-      setMessage("Please select a destination image.");
+      setMessage("Vennligst velg et bilde");
       setMessageType("error");
       return;
     }
@@ -105,7 +105,7 @@ export default function Destination({
       const storageRef = fire
         .storage()
         .ref(userObj.email + "/destination/" + destImage.name);
-      // Upload file
+      // Last opp fil
       storageRef.put(destImage).then((snapshot) => {
         setEditDestination(false);
         setIsDestination(false);
@@ -126,11 +126,11 @@ export default function Destination({
               ...destBoundaries,
             })
             .then((resp) => {
-              console.log(resp);
+              
               refreshMarkersOnSave();
             })
             .catch((err) => {
-              console.log(err);
+              
             })
             .finally((e) => setDisableSave(false));
         });
@@ -153,25 +153,25 @@ export default function Destination({
           ...destBoundaries,
         })
         .then((resp) => {
-          console.log(resp);
+          
           refreshMarkersOnSave();
         })
         .catch((err) => {
-          console.log(err);
+          
         })
         .finally((e) => setDisableSave(false));
     }
   }
 
   function addDestination() {
-    console.log("Running addDestination");
-    console.log("addDestination destImage===>", destImage);
+    
+    
     const userString = localStorage.getItem("user");
     if (!userString) {
       return;
     }
     if (!destImage) {
-      setMessage("Please select a destination image.");
+      setMessage("Vennligst velg et bilde.");
       setMessageType("error");
       return;
     }
@@ -180,7 +180,7 @@ export default function Destination({
     const storageRef = fire
       .storage()
       .ref(userObj.email + "/destination/" + destImage.name);
-    // Upload file
+    // Last opp fil
     storageRef.put(destImage).then((snapshot) => {
       setEditDestination(false);
       setIsDestination(false);
@@ -201,11 +201,11 @@ export default function Destination({
             ...destBoundaries,
           })
           .then((resp) => {
-            console.log(resp);
+            
             refreshMarkersOnSave();
           })
           .catch((err) => {
-            console.log(err);
+            
           })
           .finally((e) => setDisableSave(false));
       });
@@ -229,7 +229,6 @@ export default function Destination({
             </h5>
             <button
               class="close-popup-icon"
-              id="ahmed-close-button"
               tabIndex="0"
               aria-label="close dialog"
               onClick={() => {
@@ -250,7 +249,7 @@ export default function Destination({
                     type="file"
                     id="dest-image"
                     onChange={handleDestFileUpload}
-                    placeholder="Destination Image"
+                    placeholder="Destinasjons bilde"
                   />
                 </div>
                 <div>
@@ -261,10 +260,11 @@ export default function Destination({
                     value={destDesc}
                     onChange={(event) => setDestDesc(event.target.value)}
                     rows="3"
-                    placeholder="Destination Desc"
+                    aria-label="Skriv inn ting om destinasjonen du har valgt"
+                    placeholder="Skriv dine tanker"
                   ></textarea>
                   <label style={{ fontSize: 16, paddingTop: 4 }}>
-                    {100 - destDesc.length} characters left.
+                    {40 - destDesc.length} tegn igjen.
                   </label>
                 </div>
                 <div style={{ justifyContent: "center", display: "flex" }}>
@@ -276,7 +276,7 @@ export default function Destination({
                     onRate={setRate}
                     tabIndex="0"
                     aria-label={
-                      "rating of this destination is " + destRating + " stars"
+                      "Rangeringen av denne destinasjonen er " + destRating + " stjerner"
                     }
                   />
                 </div>
@@ -305,15 +305,16 @@ export default function Destination({
                     setTimeout(() => setShowPopup(false), 500);
                   }}
                 >
-                  Close
+                  Steng
                 </button>
                 <button
                   type="button"
                   disabled={disableSave}
                   class="btn btn-primary"
+                  aria-label="Lagre, men husk å legge til bilde."
                   onClick={saveDestination}
                 >
-                  Save
+                  Lagre
                 </button>
               </div>
             </div>
@@ -323,7 +324,7 @@ export default function Destination({
               <div class="modal-body">
                 <div>
                   {!currentDestination.title && (
-                    <p> Destination saved successfully.</p>
+                    <p> Destinasjon lagret</p>
                   )}
                 </div>
                 <div style={{ justifyContent: "center", display: "flex" }}>
@@ -360,7 +361,7 @@ export default function Destination({
                     interactive={false}
                     tabIndex="0"
                     aria-label={
-                      "rating of this destination is " + destRating + " stars"
+                      "Rangeringen av denne destinasjonen er " + destRating + " stjerner"
                     }
                   />
                 </div>
@@ -375,7 +376,7 @@ export default function Destination({
                         marginRight: 10,
                         display: "inline",
                       }}
-                      alt="delete destination"
+                      alt="Slett destinasjon"
                       onClick={deleteDestination}
                       onKeyDown={(event) => {
                         if (event.key === "Enter") deleteDestination();
@@ -394,7 +395,7 @@ export default function Destination({
                       onKeyDown={(event) => {
                         if (event.key === "Enter") setEnableShareDest(true);
                       }}
-                      alt="share destination"
+                      alt="Del destinasjon"
                       role="button"
                       tabIndex="0"
                       onClick={() => setEnableShareDest(true)}
@@ -405,7 +406,7 @@ export default function Destination({
                         class="form-control"
                         value={sharewith}
                         style={{ display: "inline", width: "65%" }}
-                        placeholder="Enter email of the user"
+                        placeholder="Tast inn bruker sin email"
                         onChange={(event) => setSharewith(event.target.value)}
                       />
                     )}
@@ -416,7 +417,7 @@ export default function Destination({
                         onClick={shareDestination}
                         style={{ display: "inline" }}
                       >
-                        Share
+                        Del
                       </button>
                     )}
                   </div>
@@ -455,14 +456,14 @@ export default function Destination({
                       }
                     }}
                   >
-                    Edit Destination
+                    Endre
                   </button>
                 </div>
               )}
               {isEditDestination && (
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary">
-                    Close
+                    Steng
                   </button>
                   <button
                     type="button"

@@ -2,43 +2,17 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+     
+  /*  Jeg liker å ha all CSS'en min på samme sted, for å så dele de i grupper slik som her:*/
   
-   img{
-    max-width: 18em; 
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  *{
+    box-sizing: border-box;
   }
-    
-   html {
+  
+  html {
     font-size: 20px; 
     line-height: 1.5; 
     } 
-
-   *{
-        box-sizing: border-box;
-    }
-
-    .klima{
-        font-size:10px;
-        grid-template-columns: repeat(3, 1fr);
-        font-weight: 500;
-        background-color: aliceblue;
-        max-height: 6em;
-        padding: 1px;
-        display: grid;
-        img, p{
-            padding: 3px;
-            text-align: center;
-            font-size:12px;
-        }
-
-        .klima-img{
-            border-radius: 70%;
-            width: 4em;
-        }
-  
-    }
 
     html, body {
         margin: 0 auto;
@@ -49,38 +23,11 @@ const GlobalStyle = createGlobalStyle`
     body {
       font-family: 'Fira Sans', sans-serif;
     }
+ 
 
-    .min-destinasjon{
-        cursor:pointer;
-    }    
 
-    .popup-destinasjon{
-        height: 500px;
-        width: 500px;
-        font-family: 'Georgia', sans-serif;
-        h3{
-            font-size: 14px;
-            text-align: center;
-            font-weight: 500;
-        }
-        h2{
-            font-size: 16px;
-            margin-bottom: -0.7em;
-            text-align: center;
-        }
-        p{
-            font-size: 12px;
-        }
-    
-    }
-    .bar-chart {
-        width: 500px;
-        height: 210px !important;
-    }
-    .bar-chart-container {
-        width: 500px;
-        height: 210px;
-    }
+    /* Geocoder, søkefeltet*/
+
     .mapboxgl-ctrl-geocoder {
         width: 50% !important;
     }
@@ -88,126 +35,21 @@ const GlobalStyle = createGlobalStyle`
       right 36% !important;
       width: 60%;
     }
-    .mapboxgl-popup-content{
-        height: 500px;
-        width: 520px;
-        position: absolute;
-        top: -140px;
-    }
-    .mapboxgl-popup-close-button {
-        font-size: 22px;
-    }
-    @media screen and (max-width: 1080px) {        
-        .mapboxgl-popup-content{
-            left: -140px;
-        }
-    }
-    @media screen and (max-width: 775px) {        
-        .mapboxgl-popup-content{
-            left: -200px;
-        }
-    }
-    @media screen and (max-width: 743px) {
-        .item-img {
-            height: 70px;
-        }
-        .mapboxgl-popup-content{
-            left: -250px;
-        }
-        .bar-chart {
-            height: 180px !important;
-        }
-    }
-    @media screen and (max-width: 643px) {
-        .item-img {
-            height: 60px;
-        }        
-    }
-    @media screen and (max-width: 560px) {        
-        .mapboxgl-popup-content{
-            left: -200px;
-        }
-    }
-    @media screen and (max-width: 500px) {
-        .bar-chart {
-            width: 400px !important;
-            height: 170px !important;
-        }
-        .bar-chart-container {
-            width: 400px;
-            height: 170px;
-        }
-        .mapboxgl-popup-content{
-            height: 400px;
-            width: 420px;     
-        }
-        .popup-destinasjon{
-            height: 400px;
-            width: 400px;     
-        }
-        .mapboxgl-ctrl-top-right {
-            right: 15% !important;
-            width: 42%;
-        }
-    }
-    @media screen and (max-width: 700px) {
-      .mapboxgl-ctrl-top-right {
-        right: 25% !important;
-        width: 42%;
-      }
-    }
-    @media screen and (max-width: 600px) {
-      .mapboxgl-ctrl-top-right {
-        right: 20% !important;
-        width: 42%;
-      }
-    }
-    @media screen and (max-width: 490px) {
-      .mapboxgl-ctrl-top-right {
-          right: 0px !important;
-          width: 95% !important;
-          top: 50px;
-      }
-      .mapboxgl-ctrl-geocoder {
-          width: 100% !important;
-      }
-      .modal-content {
-        top: 100px !important;
-      }
-    }
-    @media screen and (max-width: 400px) {
-        .bar-chart {
-            width: 300px !important;
-            height: 170px !important;
-        }
-        .bar-chart-container {
-            width: 300px;
-            height: 170px;
-        }
-        .mapboxgl-popup-content{
-            height: 400px;
-            width: 370px;     
-            left: -175px;
-        }
-        .popup-destinasjon{
-            height: 350px;
-            width: 350px;     
-        }
-    }
-
-
+   
+  
     /*mao root*/
     #root {
       z-index: -99;
     }
 
-    /*fill the map*/
+    /*Fyll kartet*/
     .mapContainer {
       margin-top: -10px;
     }
 
 
-    /*css question box*/
+    /*Informasjonsboksen som man trykker på i øvre venstre hjørne*/
+
     .modal {
       display: block;
       position: fixed;
@@ -222,7 +64,6 @@ const GlobalStyle = createGlobalStyle`
       background-color: rgba(0, 0, 0, 0.4);
     }
 
-    /* Modal Content */
     .modal-content {
       font-family: sans-serif;
       background-color: #fefefe;
@@ -233,7 +74,6 @@ const GlobalStyle = createGlobalStyle`
       letter-spacing: 1px;
     }
 
-    /* Close button */
     .close {
       color: #727579;
       float: right;
@@ -254,16 +94,26 @@ const GlobalStyle = createGlobalStyle`
       text-align: center;
     }
 
-    @media screen and (max-width: 900px) {
-      p {
-        font-size: 14px !important;
-      }
+    .info-modal {
+      top: 220px !important;
     }
-
-    @media screen and (max-width: 574px) {
-      p {
-        font-size: 12px !important;
-      }
+    .modal-content {      
+      padding: 0 !important;
+      top: 50px;
+    }
+    .close-popup-icon {
+      color: #000000bf;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 5px 5px 5px 5px;
+    }
+    .modal {
+      padding-top: 0;
+    }
+   
+    .modal-disabled {
+      pointer-events: none;
+      opacity: 0.4;
     }
 
     #myBtn {
@@ -272,6 +122,7 @@ const GlobalStyle = createGlobalStyle`
       left: 10px;
       background-color: white;
       width: 30px;
+      top: 0.4em;
       font-size: 22px !important;
       border: 0.3px solid black;
       border-radius: 5px 5px 5px 5px;
@@ -290,23 +141,18 @@ const GlobalStyle = createGlobalStyle`
       width: 360px;
     }
 
-    @media only screen and (max-width: 400px) {
-      .modal-content {
-        width: 100%;
-      }
+
+    /* Stjerne-rating funksjon*/
+
+    .react-rater-star.is-active {
+      color: #ddb745 !important;
+    }
+    .react-rater-star.will-be-active {
+      color: #e3cc86 !important;
     }
 
-    @media screen and (max-width: 700px) and (min-width: 400px) {
-      .modal-content {
-        width: 60%;
-      }
-    }
-
-    @media only screen and (max-width: 320px) {
-      #myBtn {
-        left: 0.2em;
-      }
-    }
+ 
+    /* Innlogging og registrering */
 
     .auth-form {
       padding: 40px;
@@ -389,6 +235,10 @@ const GlobalStyle = createGlobalStyle`
         transform:translateX(25%);
       }
     }
+
+
+    /* Innlogging og registrering animasjon */
+    
     .animate-form {
       animation: wobble .5s 1;
       animation-timing-function	: ease-in;
@@ -455,32 +305,9 @@ const GlobalStyle = createGlobalStyle`
         opacity: 0;
       }
     }
-    .info-modal {
-      top: 220px !important;
-    }
-    .modal-content {      
-      padding: 0 !important;
-      top: 60px;
-    }
-    .close-popup-icon {
-      color: #000000bf;
-      font-size: 24px;
-      cursor: pointer;
-    }
-    .modal {
-      padding-top: 0;
-    }
-    .react-rater-star.is-active {
-      color: #ddb745 !important;
-    }
-    .react-rater-star.will-be-active {
-      color: #e3cc86 !important;
-    }
-    .modal-disabled {
-      pointer-events: none;
-      opacity: 0.4;
-    }
+   
 
+    /* Dropdown-menu-list */
     
     nav {
       margin: auto;
@@ -493,6 +320,7 @@ const GlobalStyle = createGlobalStyle`
     nav h2 {
       font-size: 1.2rem;
       z-index: 1;
+      top: -0.03em;
       border-radius: 2px;
       position: relative;
       background: white;
@@ -544,7 +372,7 @@ const GlobalStyle = createGlobalStyle`
       margin-bottom: 22px;
       text-align: center;
       width: 20vw;
-      min-width: 20vw;
+      min-width: 100px;
       transition: all .4s ease-out;      
       border-radius: 5px 5px 5px 5px;
       max-height: 600px;
@@ -558,10 +386,10 @@ const GlobalStyle = createGlobalStyle`
       border-top-right-radius: 5px;
       margin-left: 35px;
       line-height: 1.5;
-      width: 20vw;
+      min-width: 80px;
+      width: 96px;
       padding: 0.3em;
-      margin: 0;
-      margin-bottom: 6px;
+      margin: 3px;
       background: white;
       transition: background 3s;
       box-shadow: 2px 2px 10px -2px rgba(0,0,0,.35);
@@ -579,13 +407,19 @@ const GlobalStyle = createGlobalStyle`
       text-transform: lowercase;
       font-size: 18px;
       font-weight: 200;
+      min-width: 80px;
       text-decoration: none;
       transition: color .3s;
       border-radius: 5px 5px 5px 5px;
     }
+
+    ul li a {
+      min-width: 80px;
+    }
     
     li {
         border-top-right-radius: 5px;
+        min-width: 80px;
     }
 
     .menu-element:hover {
@@ -595,21 +429,31 @@ const GlobalStyle = createGlobalStyle`
 
     img {
       border-radius: 50%;
+      width: 120px;
+      height: 120px;
     }
+
+
+    /* Logg ut funksjonalitet */
 
     .logout-container {
       position: absolute;
       right: 0px;      
-      z-index: 3;      
+      z-index: 3;   
+      height: 50px;
+      margin-top: 5px;
+      margin-right: 5px;   
     }
 
     .logout-container:hover {
       background-color: #FFFFFF;
+      border: 0.6px solid black;
+      border-radius: 5px;
     }
     
     .profile-img {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
       border-radius: 50%;
       float: left;
     }
@@ -620,8 +464,7 @@ const GlobalStyle = createGlobalStyle`
       font-size: 14px;
       position: relative;
       right: -18px;
-      bottom: -12px;
-      margin-top: 0.5em;
+      margin-top: 10px;
       overflow: hidden;
       letter-spacing: 3px;
       opacity: 0;
@@ -635,7 +478,8 @@ const GlobalStyle = createGlobalStyle`
       float: right;      
       margin: 10px;
       color: black;
-      width: 60px;      
+      width: 60px;  
+      margin-top: 3.5px;    
       transition: width .35s;
       -webkit-transition: width .35s;
       overflow: hidden;
@@ -643,7 +487,7 @@ const GlobalStyle = createGlobalStyle`
     }
     
     .logout-button:hover {
-      width: 170px;
+      width: 150px;
     }
 
     .full-width {
@@ -666,12 +510,50 @@ const GlobalStyle = createGlobalStyle`
       opacity: .9;
     }
 
+
+    /* pop-up, rammen */
+    
     .dest-modal {
       width: 100%;
+      margin-top: 4em;
     }
 
     .hide-element {
       visibility: hidden;
+    }
+
+
+
+    /* Responsivt design CSS */
+
+    @media screen and (max-width: 900px) {
+      p {
+        font-size: 14px !important;
+      }
+    }
+
+    @media screen and (max-width: 574px) {
+      p {
+        font-size: 12px !important;
+      }
+    }
+
+    @media only screen and (max-width: 400px) {
+      .modal-content {
+        width: 70%;
+      }
+    }
+
+    @media screen and (max-width: 700px) and (min-width: 400px) {
+      .modal-content {
+        width: 70%;
+      }
+    }
+
+    @media only screen and (max-width: 320px) {
+      #myBtn {
+        left: 0.2em;
+      }
     }
 
     @media screen and (max-width: 750px) {
@@ -708,6 +590,44 @@ const GlobalStyle = createGlobalStyle`
     .align-center {
       text-align : center;
     }
+
+    @media screen and (max-width: 500px) {
+      .mapboxgl-ctrl-top-right {
+           right: 15% !important;
+           width: 42%;
+       }
+   }
+
+   @media screen and (max-width: 590px) {
+     .mapboxgl-ctrl-top-right {
+         left: 8% !important;
+         width: 90% !important;
+         top: 55px;
+     }
+     .mapboxgl-ctrl-geocoder {
+         width: 100% !important;
+     }
+     .modal-content {
+    
+     }
+    
+   }
+
+   @media screen and (max-width: 600px) {
+     .mapboxgl-ctrl-top-right {
+       right: 20% !important;
+       width: 42%;
+     }
+   }
+
+   @media screen and (max-width: 700px) {
+     .mapboxgl-ctrl-top-right {
+       right: 30% !important;
+       width: 42%;
+       top: 55px;
+     }
+   }
+
 `;
 
 export default GlobalStyle;

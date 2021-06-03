@@ -1,7 +1,8 @@
 import React from "react";
 
 /**
- * This component renders a Information component on the left top of the application.
+  * Denne komponenten render en pop-up informasjon øverst i venstre hjørne
+    som gir deg info om applikasjonens funksjonalitet 
  */
 
 function Information() {
@@ -63,12 +64,12 @@ function Information() {
             >
               &times;
             </button>
-            <p style={{ marginTop: 30 }} id="dialog1_label">
-              On this map you find the 7 new wonders of the world + our school!
+            <p style={{ marginTop: 10 }} id="dialog1_label">
+            I denne applikasjonen kan du søke opp nye destinasjoner og lagre dem digitalt på kartet!
             </p>
             <p></p>
-            <p id="dialog1_label2">
-              Click, scroll and navigate through the map!
+            <p style={{marginTop: -25 }} id="dialog1_label2">
+            Drøm deg bort og del destinasjoner med venner.
             </p>
           </div>
         </div>

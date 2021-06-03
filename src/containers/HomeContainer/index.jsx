@@ -14,7 +14,8 @@ import WelcomeBanner from "../../components/Welcome/WelcomeBanner";
 import { useHistory } from "react-router";
 
 /**
- * This component renders a Home page which renders the Map, Left Menu, Information, Logout & Destination Search, Add, Edit, Delete & Share.
+ * Denne komponenten render en Home page som render kartet, informasjons-pop-up,
+ * dropdown-menu, logg-ut-funksjonalitet, geocoder, legge til, endre, slette og dele.
  */
 
 let map = null;
@@ -66,7 +67,7 @@ function HomeContainer() {
         "pk.eyJ1Ijoic2FuZGVybmwiLCJhIjoiY2trZWdsZXh6MDgxODJ1bjd2eHhrZHBpNiJ9.CfglP1yR5fWs8mOyh8k46w",
       mapboxgl: Mapbox,
     });
-    console.log("geocoder===>", geocoder);
+    
 
     map.addControl(new Mapbox.NavigationControl(), "bottom-right");
     map.addControl(geocoder);
@@ -159,12 +160,12 @@ function HomeContainer() {
       .doc(currentDestination.id)
       .delete()
       .then(() => {
-        console.log("Destination deleted successfully");
+        
         setShowPopup(false);
         getDestinations();
       })
       .catch((error) => {
-        console.log("Error getting documents: ", error);
+        
       });
   }
 
@@ -189,7 +190,7 @@ function HomeContainer() {
         setDestinations(destinations);
       })
       .catch((error) => {
-        console.log("Error getting documents: ", error);
+        
       });
   }
 

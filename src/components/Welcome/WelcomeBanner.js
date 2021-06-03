@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 /**
- * This component renders a Welcome Banner which is displayed only first time when user logs into the application
- * Storing the flags in localstorage to make it consistent behavior
+ * Denne komponenten rendrer en Velkomst pop-up som vises kun første gang en bruker logger seg inn i applikasjonen
  */
 export default function WelcomeBanner() {
   const [showBanner, setShowBanner] = useState(true);
@@ -30,17 +29,20 @@ export default function WelcomeBanner() {
           <div class="modal-dialog animate-modal">
             <div class="modal-content dest-modal">
               <div class="modal-body">
+              <div className="align-center" style={{marginTop: 14}}>
+                <label aria-label="Velkommen til My travels">Velkommen til MyTravels.</label>
+                  <label aria-label="Her kan du søke opp destinasjoner og markere dem på kartet!">
+                    Her kan du søke opp destinasjoner og markere dem på kartet!</label>
+                </div>
                 <div className="align-center">
                   <button
                     type="button"
                     class="btn btn-primary"
                     onClick={closeBanner}
+                    aria-label="Jeg skjønner"
                   >
-                    I Understand
+                    Jeg skjønner!
                   </button>
-                </div>
-                <div className="align-center" style={{marginTop: 40}}>
-                  <label>Welcome to MyTravels</label>
                 </div>
               </div>
             </div>

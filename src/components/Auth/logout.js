@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import fire from "../../config/firebase-config";
 
 /**
- * This component renders a Profile image & Logout functionality.
+ * Denne komponenten rendrer et profilbilde og logge ut funksjon
  */
 
 export default function Logout() {
@@ -28,7 +28,7 @@ export default function Logout() {
         });
       })
       .catch((error) => {
-        console.log("Error getting documents: ", error);
+        
       });
   }, []);
 
@@ -65,7 +65,7 @@ export default function Logout() {
         class="logout-button"
         tabIndex="0"
         role="button"
-        aria-label="Logout"
+        aria-label="Logg ut"
         onKeyDown={(event) => {
           if (event.key === "Enter") singoutUser();
         }}
@@ -84,7 +84,7 @@ export default function Logout() {
             if (event.key === "Enter") singoutUser();
           }}
         >
-          LOGOUT
+          LOGG UT
         </div>
       </a>
     </div>

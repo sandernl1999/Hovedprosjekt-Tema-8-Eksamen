@@ -1,12 +1,7 @@
 import firebase from 'firebase';
 
 const firebaseConfig = {
-    // apiKey: "AIzaSyDDFlPnkwHN65BiMUPwoythfOJPSdEnG9Q",
-    // authDomain: "next-firebase-project.firebaseapp.com",
-    // projectId: "next-firebase-project",
-    // storageBucket: "next-firebase-project.appspot.com",
-    // messagingSenderId: "314748682659",
-    // appId: "1:314748682659:web:e6f4912319adbfc5961a16",
+  //Forklaring på at de ikke er i en env-fil står forklart i env-filen i koden//
     measurementId: "G-G3D14K5ZPH",
     apiKey: "AIzaSyBcprAyw-vpJd7fh5E0RPhoPEuCzhLZTy0",
     authDomain: "mapbox-firebase-project.firebaseapp.com",

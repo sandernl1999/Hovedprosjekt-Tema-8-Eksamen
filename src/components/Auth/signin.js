@@ -4,7 +4,7 @@ import fire from "../../config/firebase-config";
 import Message from "../StatusMessage/Message";
 
 /**
- * This component renders Sigin page for user to login to the applicaiton
+ * Denne komponenten rendrer en logg-inn side til applikasjonen for brukerne
  */
 
 export default function SignIn() {
@@ -18,17 +18,17 @@ export default function SignIn() {
 	function signinUser(event) {
         event.preventDefault();
         if(!email){
-            setErrorMessage("Please enter Email address");
+            setErrorMessage("Vennligst tast inn email");
             return;
         }
         if(!password){
-            setErrorMessage("Please enter Password");
+            setErrorMessage("Vennligst tast inn passord");
             return;
         }
 		fire.auth().signInWithEmailAndPassword(email, password)
 		.then((response) => {
 		  const user = response.user;
-          console.log(user);
+          
 		  localStorage.setItem('user', JSON.stringify(
 			    {
 				  email: user.email,
@@ -42,7 +42,7 @@ export default function SignIn() {
           setTimeout(()=> history.push('/home'), 500);
 		})
 		.catch((error) => {
-		  console.log(error);
+		  
 		  setErrorMessage(error.message);
 		});
 	}
@@ -59,21 +59,21 @@ export default function SignIn() {
                 <div className="bg bg3"></div>
                 <div className="auth-container">
                 <form className="auth-form">
-                    <h3 className="auth-header">Sign In</h3>                    
+                    <h3 className="auth-header">Logg inn</h3>                    
 
                     <div className="form-group">
-                        <label className="form-label">Email address</label>
-                        <input type="email" className="form-control" placeholder="Enter email"  onChange={(event)=>setEmail(event.target.value)}/>
+                        <label className="form-label">Email</label>
+                        <input type="email" className="form-control" placeholder="Tast inn email"  onChange={(event)=>setEmail(event.target.value)}/>
                     </div>
 
                     <div className="form-group">
-                        <label className="form-label">Password</label>
-                        <input type="password" className="form-control" placeholder="Enter password"  onChange={(event)=>setPassword(event.target.value)}/>
+                        <label className="form-label">Passord</label>
+                        <input type="password" className="form-control" placeholder="Tast inn passord"  onChange={(event)=>setPassword(event.target.value)}/>
                     </div>
 
-                    <button type="submit" className="btn btn-primary btn-block" onClick={signinUser}>SignIn</button>
+                    <button type="submit" className="btn btn-primary btn-block" onClick={signinUser}>Logg inn</button>
                     <p className="text-right" style={{marginTop: "10px"}}>
-                        Need an account? <a href="#" onClick={redirectToRegisteration}> SignUp </a>
+                        Ny bruker? <a href="#" onClick={redirectToRegisteration}> Registrer deg </a>
                     </p>
 
                     {errorMessage && 

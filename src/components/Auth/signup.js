@@ -4,7 +4,7 @@ import fire from "../../config/firebase-config";
 import Message from "../StatusMessage/Message";
 
 /**
- * This component renders a Signup page for users to register to application
+ * Denne komponenten rendrer en registrerings-funksjonalitet for brukere som vil registrere seg
  */
 
 export default function SignUp() {    
@@ -22,23 +22,23 @@ export default function SignUp() {
 	function registerUser(event) {	
         event.preventDefault();
         if(!firstName) {
-            setErrorMessage("Please enter First Name.");
+            setErrorMessage("Vennligst tast inn fornavn");
             return;
         } else if(!email) {
-            setErrorMessage("Please enter Email.");
+            setErrorMessage("Vennligst tast inn email");
             return;
         } else if(!password) {
-            setErrorMessage("Please enter Password.");
+            setErrorMessage("Vennligst tast inn passord");
             return;
         } else if(!profilePic){
-            setErrorMessage("Please select a profile picture.");
+            setErrorMessage("Vennligst velg profilbilde");
             return;
         }
         if(!new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/).test(email)){
-            setErrorMessage("Email format is invalid.");
+            setErrorMessage("Email format er ugyldig");
             return;
         } else if(!new RegExp("^(?=.*[A-Z])(?=.*[0-9]).*$").test(password)){
-            setErrorMessage("Password should contain atleast one digit & uppercase letter.");
+            setErrorMessage("Passord må ha et tall og en stor bokstav");
             return;
         }
 		fire.auth().createUserWithEmailAndPassword(email, password)
@@ -54,10 +54,10 @@ export default function SignUp() {
 			  ));			
 
 			if(profilePic) {
-                // Create a Storage Ref w/ username
+                // Lage en storage ref m/username
 			    const storageRef = fire.storage().ref(user.email + '/profilePicture/' + profilePic.name);
-		        // Upload file
-			    storageRef.put(profilePic).then(snapshot => {
+		        // Last opp fil
+                storageRef.put(profilePic).then(snapshot => {
                     navigateToHomepage();
                     snapshot.ref.getDownloadURL().then((downloadURL) => {
                         fire.auth().currentUser.updateProfile({displayName: `${firstName} ${lastName}`}).then(r => console.log(r)).catch(e => console.log(e));
@@ -129,10 +129,10 @@ export default function SignUp() {
                 <div className="bg bg3"></div>
                 <div className="auth-container">
                     <form className="auth-form signup-form">
-                        <h3 className="auth-header">Sign Up</h3>
+                        <h3 className="auth-header">Registrer deg</h3>
 
                         <div className="form-group">
-                                <img id="profile-pic" src="#" alt="profile-pic" style={{borderRadius: "50%"}} hidden={true}/>
+                                <img id="profile-pic" src="#" alt="profile-pic" style={{borderRadius: "50%", marginLeft: "auto", marginRight: "auto", display: "block"}} hidden={true}/>
                         </div>
 
                         <div className="form-group" style={{display: "flex", justifyContent: "center"}}>
@@ -143,32 +143,32 @@ export default function SignUp() {
                                     style={{ display: "none" }}
                                     accept="image/x-png,image/gif,image/jpeg"                            
                                 />
-                                <button className="btn btn-primary btn-block" style={{width: "100px"}} onClick={handleClick}>Add Image</button>
+                                <button className="btn btn-primary btn-block" style={{width: "100px"}} onClick={handleClick}>Legg til bilde</button>
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label">First name</label>
-                            <input type="text" className="form-control" placeholder="First name" onChange={(event)=> setFirstName(event.target.value)}/>
+                            <label className="form-label">Fornavn</label>
+                            <input type="text" className="form-control" placeholder="Fornavn" onChange={(event)=> setFirstName(event.target.value)}/>
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label">Last name</label>
-                            <input type="text" className="form-control" placeholder="Last name" onChange={(event)=> setLastName(event.target.value)}/>
+                            <label className="form-label">Etternavn</label>
+                            <input type="text" className="form-control" placeholder="Etternavn" onChange={(event)=> setLastName(event.target.value)}/>
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label">Email address</label>
-                            <input type="email" className="form-control" placeholder="Enter email" onChange={(event)=> setEmail(event.target.value)}/>
+                            <label className="form-label">Email</label>
+                            <input type="email" className="form-control" placeholder="Tast inn email" onChange={(event)=> setEmail(event.target.value)}/>
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label">Password</label>
-                            <input type="password" className="form-control" placeholder="Enter password" onChange={(event)=> setPassword(event.target.value)}/>
+                            <label className="form-label">Passord</label>
+                            <input type="password" className="form-control" placeholder="Tast inn passord" onChange={(event)=> setPassword(event.target.value)}/>
                         </div>
 
-                        <button type="submit" className="btn btn-primary btn-block" onClick={registerUser}>SignUp</button>
+                        <button type="submit" className="btn btn-primary btn-block" aria-label="Registrer deg men husk bilde. Dette er et krav." onClick={registerUser}>Registrer deg</button>
                         <p className="text-right" style={{marginTop: "10px"}}>
-                            Already registered <a href="#" onClick={redirectToSignin}>signIn?</a>
+                            Allerede bruker? <a href="#" onClick={redirectToSignin}>Logg inn</a>
                         </p>
                         {
                         errorMessage && 

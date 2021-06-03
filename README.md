@@ -1,15 +1,13 @@
 # MyTravels.no
 
-## Prerequisites
+## Før du begynner:
+Sjekk at du har installert siste versjoner av: `node js & firebase cli`
 
-Before you begin, ensure you have met the following requirements:
-* You have installed the latest version of `node js & firebase cli`
+## Installering av MyTravels.no
 
-## Installing MyTravels.no
+For å installere MyTravels.no, følg disse stegene:
 
-To install MyTravels.no, follow these steps:
-
-Install npm packages:
+Installer npm packages:
 ```
 npm install
 ```
@@ -19,30 +17,33 @@ Build:
 npm run build
 ```
 
-Deploy to Firebase:
+Deploye til Firebase:
 ```
 npm run deploy
 ```
 
-## Implemenation
+Starte web-applikasjonen:
+```
+npm start
+```
 
-Using ReactJS, Firebase Authentication, Firestore & Bootstrap
+## Miljøvariabler 
+Miljøvariabler er ikke inkludert i env-fil og API'ene ligger derfor i koden,
+ettersom det står i oppgaventeksten at vi skal poste oppgaven i public-git-rep
+der env-filer ikke vises så tenkte jeg dette var best i tilfelle sensor må hente
+back-up koden min fra github og få den til å funke.
 
-1. Application allows users to Signup, Signin & Logout functionalities
-2. Renders a Home component with which is a main component of this applicaiton
-3. Renders a Information(?) popup which describes notes about the application
-4. Renders Mapbox map with Markers, Controls & Geocoder
-5. Renders Search, Add, Update, Delete & Share destination
-6. Welcome Banner is a popup displayed first time to the user
-7. Renders simple animations on Signin, Signup & Destination popups
-8. Renders a drop down menu on the left top corner with the list of saved destinations
-9. Application is developed as web responsive to extra small, small, medium, large & extra large devices 
 
-## Contact
+## Funksjonalitet og implementering: 
 
-If you want to contact me you can reach me at <your_email@address.com>.
+Bruk av ReactJS, Firebase Autentisering, Firestore & Bootstrap
 
-## License
-<!--- If you're not sure which open license to use see https://choosealicense.com/--->
+1. Applikasjonen lar brukeren logge inn, registrere seg & logge ut.
+3. Inneholder en informasjons-popup som forklarer bruken av applikasjonen.
+4. Består av et Mapbox kart med markeringer og en searc geocoder.
+5. Lar deg søke, legge til, oppdatere, slette & dele destinasjoner.
+6. En velkomst pop-up som møter deg første gang du tar i bruk applikasjonen.
+7. Simple animasjoner når du logger inn, registrerer deg & når destinasjon-pop-upen vises.
+8. Inneholder en dropdown menu i venstre hjørne med en liste over lagrede destinasjoner på kartet.
+9. Applikasjonen er fullstendig responsiv ned til kravet på 320px, den er også accessible med tabs.
 
-This project uses the following license: [<license_name>](<link>).
